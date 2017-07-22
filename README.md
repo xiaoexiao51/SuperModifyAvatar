@@ -1,9 +1,9 @@
 # SuperModifyAvatar
 修改用户头像（拍照和从相册选择）
 
-![](https://github.com/xiaoexiao51/SuperMP3Recorder/blob/master/screenshot/img01.png)
+![](https://github.com/xiaoexiao51/SuperModifyAvatar/blob/master/screenshot/img01.png)
 
-![](https://github.com/xiaoexiao51/SuperMP3Recorder/blob/master/screenshot/img02.png)
+![](https://github.com/xiaoexiao51/SuperModifyAvatar/blob/master/screenshot/img02.png)
 
 代码实现：
 
