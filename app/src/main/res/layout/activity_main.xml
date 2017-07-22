@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.supermodifyavatar.widget.CircleImageView
+        android:id="@+id/civ_header"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/ic_header"
+        app:civ_border_color="@color/color_blue"
+        app:civ_border_overlay="true"
+        app:civ_border_width="2dp"
+        app:civ_fill_color="@color/color_blue"/>
+
+    <com.supermodifyavatar.widget.RoundImageView
+        android:id="@+id/riv_header"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_header"
+        app:sriv_border_color="@color/color_blue"
+        app:sriv_border_width="2dp"
+        app:sriv_left_bottom_corner_radius="10dp"
+        app:sriv_left_top_corner_radius="10dp"
+        app:sriv_right_bottom_corner_radius="10dp"
+        app:sriv_right_top_corner_radius="10dp"/>
+
+</LinearLayout>
