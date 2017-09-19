@@ -1,10 +1,8 @@
 package com.supermodifyavatar.dialog;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.util.DisplayMetrics;
-import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,7 +21,10 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-
+/**
+ * Created by MMM on 2017/9/18.
+ * 精仿IOS单选对话框
+ */
 public class BaseIOSDialog extends Dialog {
 
     @Bind(R.id.txt_title)
@@ -47,20 +48,22 @@ public class BaseIOSDialog extends Dialog {
     public BaseIOSDialog(Context context, int themeResId) {
         super(context, R.style.IOSDialogStyle);
         this.mContext = context;
-        View mView = LayoutInflater.from(context).inflate(R.layout.dialog_base_ios, null);
-        ButterKnife.bind(this, mView);
-        setContentView(mView);
+
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_base_ios, null);
+        setContentView(view);
+        ButterKnife.bind(this, view);
 
         Window dialogWindow = getWindow();
-        dialogWindow.setGravity(Gravity.CENTER | Gravity.BOTTOM);
 //        dialogWindow.setGravity(Gravity.CENTER);
+        dialogWindow.setGravity(Gravity.CENTER | Gravity.BOTTOM);
         WindowManager.LayoutParams params = dialogWindow.getAttributes();
-        params.x = 0;
-        params.y = 0;
-        WindowManager manager = ((Activity) context).getWindowManager();
-        Display d = manager.getDefaultDisplay();
-        params.width = (int) (d.getWidth() * 1);
+        DisplayMetrics d = context.getResources().getDisplayMetrics(); // 获取屏幕宽高
+        params.width = (int) (d.widthPixels * 1.0); // 高度设置为屏幕的1.0
+//        params.height = (int) (d.heightPixels * 0.6); // 高度设置为屏幕的0.6
         dialogWindow.setAttributes(params);
+
+        BaseIOSDialog.this.setCanceledOnTouchOutside(true);
+        BaseIOSDialog.this.setCancelable(true);
     }
 
     public BaseIOSDialog setTitle(String title) {

@@ -14,7 +14,10 @@ import android.widget.TextView;
 
 import com.supermodifyavatar.R;
 
-
+/**
+ * Created by MMM on 2017/9/18.
+ * 精仿QQ单选对话框
+ */
 public class BottomDialog extends Dialog implements View.OnClickListener {
 
     private TextView photographBtn;

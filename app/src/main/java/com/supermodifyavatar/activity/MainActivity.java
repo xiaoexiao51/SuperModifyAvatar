@@ -1,4 +1,4 @@
-package com.supermodifyavatar;
+package com.supermodifyavatar.activity;
 
 import android.Manifest;
 import android.content.Intent;
@@ -13,24 +13,27 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
+import com.supermodifyavatar.R;
 import com.supermodifyavatar.dialog.BaseIOSDialog;
 import com.supermodifyavatar.dialog.BottomDialog;
+import com.supermodifyavatar.dialog.LoadingDialog;
+import com.supermodifyavatar.dialog.MessageDialog;
 import com.supermodifyavatar.model.UpLoadBean;
 import com.supermodifyavatar.utils.PhotoUtils;
 import com.supermodifyavatar.widget.CircleImageView;
 import com.supermodifyavatar.widget.RoundImageView;
+import com.yanzhenjie.permission.AndPermission;
+import com.yanzhenjie.permission.PermissionListener;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import kr.co.namee.permissiongen.PermissionFail;
-import kr.co.namee.permissiongen.PermissionGen;
-import kr.co.namee.permissiongen.PermissionSuccess;
 import okhttp3.Call;
 
 public class MainActivity extends AppCompatActivity {
@@ -58,31 +61,24 @@ public class MainActivity extends AppCompatActivity {
 
     private void getPermissions() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            PermissionGen.with(this)
-                    .addRequestCode(120)
-                    .permissions(
-                            Manifest.permission.CAMERA,
-                            Manifest.permission.READ_EXTERNAL_STORAGE,
-                            Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                    .request();
+            AndPermission.with(MainActivity.this)
+                    .requestCode(100)
+                    .permission(Manifest.permission.CAMERA)
+                    .callback(new PermissionListener() {
+                        @Override
+                        public void onSucceed(int requestCode, @NonNull List<String> grantPermissions) {
+                            isPermission = true;
+                            Toast.makeText(MainActivity.this, "权限请求成功" + grantPermissions.get(0), Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void onFailed(int requestCode, @NonNull List<String> deniedPermissions) {
+                            isPermission = false;
+                            Toast.makeText(MainActivity.this, "权限获取失败" + deniedPermissions.get(0), Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .start();
         }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        PermissionGen.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
-    }
-
-    @PermissionSuccess(requestCode = 120)
-    public void doPermissionSuccess() {
-        isPermission = true;
-        Toast.makeText(this, "权限请求成功", Toast.LENGTH_SHORT).show();
-    }
-
-    @PermissionFail(requestCode = 120)
-    public void doPermissionFail() {
-        isPermission = false;
-        Toast.makeText(this, "权限获取失败", Toast.LENGTH_SHORT).show();
     }
 
     private void setAvatarChangeListener() {
@@ -119,11 +115,27 @@ public class MainActivity extends AppCompatActivity {
         switch (view.getId()) {
             case R.id.civ_header:
                 showPhotoDialog1();
+//                showLoadingDialog();
                 break;
             case R.id.riv_header:
                 showPhotoDialog2();
+//                showMessageDialog();
                 break;
         }
+    }
+
+    private void showLoadingDialog() {
+        new LoadingDialog(this).setTvLoading("正在加载...").show();
+    }
+
+    private void showMessageDialog() {
+        new MessageDialog(this).build("提示", "即将删除收藏", true)
+                .setOnChooseResultListener(new MessageDialog.OnChooseResultListener() {
+                    @Override
+                    public void onChooseResult(boolean confirm) {
+
+                    }
+                }).show();
     }
 
     private void showPhotoDialog1() {

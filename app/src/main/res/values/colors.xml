@@ -1,18 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#67CFE8</color>
+    <color name="colorPrimaryDark">#67CFE8</color>
+    <color name="colorAccent">#E96668</color>
+    <color name="color_white">#FFFFFF</color>
+    <color name="color_black">#000000</color>
+
+    <!--灰色背景或分隔线-->
+    <color name="color_bg">#EBEBEB</color>
+    <color name="color_bg2">#F4F4F4</color>
+    <color name="color_line">#EEEFF3</color>
+    <color name="deep_line">#DDDDDD</color>
+    <color name="gray_bg">#EEEFF3</color>
+    <color name="image_bg">#D8D8D8</color>
+    <color name="color_press">#D8D8D8</color>
 
     <!--文字颜色由深到浅-->
     <color name="color_title">#333333</color>
     <color name="color_content">#5c5c5c</color>
     <color name="color_gray">#7B7B7B</color>
     <color name="light_gray">#B1B2B2</color>
+    <color name="color_refresh">#777777</color>
 
-    <color name="white">#ffffff</color>
-    <color name="color_bg">#EBEBEB</color>
-    <color name="color_press">#D8D8D8</color>
-    <color name="deep_line">#DDDDDD</color>
-    <color name="color_blue">#0099FF</color>
+    <!--透明色-->
+    <color name="transparent">#00000000</color>
+    <color name="transparent_black">#77000000</color>
+    <color name="transparent_gray">#885c5c5c</color>
+    <color name="color_blue">#67CFE8</color>
+    <color name="color_blue2">#4EADFF</color>
+    <color name="dark_blue">#30626E</color>
+    <color name="trans_blue">#8867CFE8</color>
+
+    <color name="bright_red">#ffdc001e</color>
+    <color name="color_red">#E96668</color>
+    <color name="dark_red">#8c0706</color>
+    <color name="transparent_red">#88FF0000</color>
+    <color name="color_pick">#FCBCB8</color>
+    <color name="color_ripple">#607D8B</color>
 </resources>
